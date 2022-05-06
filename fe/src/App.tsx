@@ -1,37 +1,13 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
-import icon from './arroba.png'
-import styled from 'styled-components'
+import { icon } from './assets'
+import {
+  AppContainer,
+  Icon,
+  Title,
+  Description
+} from './styled'
 
 
-const Title = styled.div`
-  font-weight: 500;
-  font-size: 34px;
-`
-const Description = styled.div`
-  font-weight: 200;
-  width: 300px ;
-  text-align: center;
-  font-size: 12px;
-`
-
-const Email = styled.input`
-  font-weight: 200;
-  font-size: 14px;
-`
-const Icon = styled.img`
-  width: 75px ;
-`
-const AppContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-`
-
-
-function App() {
+export const App = () => {
   return (
     <AppContainer>
       <Icon style={{width: 75, }} src={icon} />
