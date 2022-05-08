@@ -1,0 +1,16 @@
+service: notion-email-service-fe
+frameworkVersion: '3'
+provider:
+  name: aws
+  stage: dev
+
+custom:
+  client: 
+    bucketName: notion-email-service-fe
+    indexDocument: custom-index.html
+    errorDocument: custom-error.html
+
+
+plugins:
+  - serverless-finch
+  

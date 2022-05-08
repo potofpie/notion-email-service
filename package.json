@@ -1,8 +1,0 @@
-{
-  "devDependencies": {
-    "serverless-finch": "^4.0.0"
-  },
-  "scripts": {
-    "deploy": "cd fe;  npm run build; cd ../; sls client deploy"
-  }
-}

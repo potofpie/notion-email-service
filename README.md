@@ -1,1 +1,0 @@
-# notion-email-service

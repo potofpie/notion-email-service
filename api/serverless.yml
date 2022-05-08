@@ -1,0 +1,33 @@
+service: notion-email-service-api
+frameworkVersion: '3'
+provider:
+  name: aws
+  stage: dev
+
+
+package:
+  include:
+    - app.py
+    - lambda_handler.py
+  exclude:
+    - '**/**'
+
+    
+
+functions:
+  api:
+    handler: lambda_handler.lambda_handler
+    events:
+      - httpApi: '*'
+
+
+custom:
+  tableName: users-table
+  pythonRequirements:
+    pythonBin: python3
+    dockerizePip: non-linux
+
+plugins:
+  - serverless-python-requirements
+  
+

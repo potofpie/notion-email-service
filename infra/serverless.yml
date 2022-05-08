@@ -1,0 +1,26 @@
+service: notion-email-service-infra
+frameworkVersion: '3'
+
+custom:
+  tableName: 'users-table-${self:provider.stage}'
+
+provider:
+  name: aws
+  stage: dev
+
+
+resources:
+  Resources:
+    UsersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:custom.tableName}
