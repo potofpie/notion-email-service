@@ -1,0 +1,22 @@
+{
+  "name": "notion-email-service",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "deploy:infra" : "cd infra; sls deploy; cd ../;",
+    "deploy:api" : "cd api; sls deploy; cd ../;",
+    "deploy:fe" : "cd fe; sls deploy; cd ../;",
+    "deploy:app" : "npm run deploy:infra; npm run deploy:api; npm run deploy:fe;"
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/potofpie/notion-email-service.git"
+  },
+  "author": "Bobby Christopher",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/potofpie/notion-email-service/issues"
+  },
+  "homepage": "https://github.com/potofpie/notion-email-service#readme"
+}
