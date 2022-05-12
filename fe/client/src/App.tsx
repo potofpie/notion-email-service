@@ -1,9 +1,8 @@
-import { Routes, Route, Link, } from "react-router-dom";
-import { icon } from './assets'
+import { Routes, Route } from "react-router-dom";
 import {
   AppContainer,
 } from './styled'
-import { ProductDisplay, Login, NotFound, Header } from './components'
+import { ProductDisplay, Login, NotFound, Header, Demo } from './components'
 import FadeIn from 'react-fade-in';
 
 
@@ -22,6 +21,15 @@ export const App = () => {
               <AppContainer>
                 <Header/>
                 <ProductDisplay/> 
+              </AppContainer>
+            </FadeIn>
+        }/>
+        <Route path="demo" element={
+            <FadeIn className='fade-in' childClassName="fade-in">
+              <AppContainer>  
+                <Header/>
+                <Demo />
+
               </AppContainer>
             </FadeIn>
         }/>

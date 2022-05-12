@@ -28,7 +28,7 @@ import { icon } from '../assets'
                 <div>Sign In</div>
               </div>
             </div>
-            <a className="inline-block align-baseline m-3 font-bold text-sm text-black hover:text-gray-700" href="#">
+            <a className="inline-block align-baseline m-3 font-bold text-sm text-black hover:text-gray-700" href="/demo">
                 Want to see a quick demo?
             </a>
         </>                
