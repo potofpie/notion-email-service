@@ -4,9 +4,9 @@
   "description": "Example of a Python Flask API service backed by DynamoDB with traditional Serverless Framework",
   "author": "",
   "scripts": {
-    "start": "source ./venv/bin/activate; export $(grep -v '^#' .env.local); python ./app.py",
+    "start": "source ./venv/bin/activate; export $(grep -v '^#' .env.local); python ./app.py start;",
     "start_db": "docker run -p 8000:8000 amazon/dynamodb-local;",
-    "create_tables": "source ./venv/bin/activate; export $(grep -v '^#' .env.local); python ./models/__init__.py",
+    "create_tables": "source ./venv/bin/activate; export $(grep -v '^#' .env.local); python ./app.py create_db;",
     "predeploy": "docker run -v \"$PWD\":/var/task \"public.ecr.aws/sam/build-python3.8\" /bin/sh -c \"pip install -r requirements.txt -t  pythonLayers/general/python; exit\""
   },
   "devDependencies": {

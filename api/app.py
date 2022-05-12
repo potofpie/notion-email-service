@@ -1,6 +1,6 @@
 import os
 from flask import Flask, jsonify, make_response, request, redirect
-from models import create_user, get_user
+from models import get_user
 from oauth_notion import notion_oauth
 from payment import create_checkout_session
 app = Flask(__name__)
@@ -28,6 +28,12 @@ def resource_not_found(e):
     return make_response(jsonify(error='Not found!'), 404)
 
 if __name__ == '__main__':
-    app.run(port=5000, debug=True,  ssl_context='adhoc')
+    import sys
+    action = sys.argv[1]
+    if(action == 'start'):
+        app.run(port=5000, debug=True,  ssl_context='adhoc')
+    elif(action == 'create_db'):
+        from models import UserModel
+        UserModel.create_table(read_capacity_units=1,write_capacity_units=1)
 
 
