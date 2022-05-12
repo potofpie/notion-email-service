@@ -1,9 +1,16 @@
 {
-  "name": "aws-python-flask-dynamodb-api-project",
+  "name": "notion-email-service-api",
   "version": "1.0.0",
   "description": "Example of a Python Flask API service backed by DynamoDB with traditional Serverless Framework",
   "author": "",
+  "scripts": {
+    "start": "source ./venv/bin/activate; export $(grep -v '^#' .env.local); python ./app.py",
+    "start_db": "docker run -p 8000:8000 amazon/dynamodb-local;",
+    "create_tables": "source ./venv/bin/activate; export $(grep -v '^#' .env.local); python ./models/__init__.py",
+    "predeploy": "docker run -v \"$PWD\":/var/task \"public.ecr.aws/sam/build-python3.8\" /bin/sh -c \"pip install -r requirements.txt -t  pythonLayers/general/python; exit\""
+  },
   "devDependencies": {
+    "serverless-dotenv-plugin": "^4.0.0",
     "serverless-finch": "^4.0.0",
     "serverless-python-requirements": "^5.4.0",
     "serverless-wsgi": "^1.7.6"

@@ -24,6 +24,10 @@ coverage
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
+
+# Secrets Stuff
+
+
 # Javascript Stuff
 node_modules
 
@@ -36,9 +40,10 @@ node_modules
 
 #Serverless Stuff
 admin.env
-.env
+.env*
 _meta
 .serverless
 
 #Python Stuff
 venv
+pythonLayers
