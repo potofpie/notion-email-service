@@ -1,5 +1,6 @@
 from pynamodb.attributes import NumberAttribute, UnicodeAttribute
 from pynamodb.models import Model
+from stripe import Subscription
 from models.encrypted_string_attribute import EncryptedStringAttribute
 
 
@@ -17,6 +18,7 @@ class UserModel(Model):
     first_name = UnicodeAttribute(null=True)
     last_name = UnicodeAttribute(null=True)
     trial_email_count = NumberAttribute(default=100)
+    subscription_id = EncryptedStringAttribute(null=True)
     notion_access_token = EncryptedStringAttribute(null=True)
 
 

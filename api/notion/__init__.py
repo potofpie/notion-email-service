@@ -1,9 +1,10 @@
 import requests
 from flask import jsonify, request
 import base64
+import os
 
-oauth_client_id = "2d8f7261-aa06-46d4-8c5b-8e89a69db552"
-shhh = "secret_U87amXHFdyiATmS5EMJFGo9OjFsl7br6ne9jv0dTM7w"
+oauth_client_id = os.environ['NOTION_INTEGRATION_SECRET']
+shhh = os.environ['NOTION_INTEGRATION_ID']
 
 
 

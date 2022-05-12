@@ -1,7 +1,7 @@
 import os
 from flask import Flask, jsonify, make_response, request, redirect
 from models import get_user
-from oauth_notion import notion_oauth
+from notion.oauth import notion_oauth
 from payment import create_checkout_session
 app = Flask(__name__)
 
