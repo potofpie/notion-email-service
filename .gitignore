@@ -47,3 +47,6 @@ _meta
 #Python Stuff
 venv
 pythonLayers
+
+#Vim Stuff
+tags
