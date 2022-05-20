@@ -24,3 +24,59 @@ resources:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
         TableName: ${self:custom.tableName}
+    CognitoUserPool:
+      Type: AWS::Cognito::UserPool
+      Properties:
+          UserPoolName: ${self:provider.stage}-user-pool
+          UsernameAttributes:
+              - email
+          AutoVerifiedAttributes:
+              - email
+    GoogleCognitoUserPoolIdentityProvider:
+      Type: AWS::Cognito::UserPoolIdentityProvider
+      Properties: 
+        ProviderName: Google
+        AttributeMapping:
+          email: email
+        ProviderDetails:
+          client_id: ${env:SSO_GOOGLE_CLIENT_ID}
+          client_secret: ${env:SSO_GOOGLE_CLIENT_SECRET}
+          authorize_scopes: email openid
+        ProviderType: Google
+        UserPoolId: 
+          Ref: CognitoUserPool
+    CognitoUserPoolClient:
+        Type: AWS::Cognito::UserPoolClient
+        DependsOn: 
+          - GoogleCognitoUserPoolIdentityProvider
+        Properties:
+            ClientName: ${self:provider.stage}-user-pool-client
+            AllowedOAuthScopes:
+              - phone
+              - email
+              - openid
+            CallbackURLs:
+              -  https://example.com/cb
+            LogoutURLs:
+              -  https://example.com/logout
+            AllowedOAuthFlows:
+              - code
+              - implicit
+            SupportedIdentityProviders: 
+              - Google
+            UserPoolId:
+                Ref: CognitoUserPool
+            ExplicitAuthFlows:
+                - ADMIN_NO_SRP_AUTH
+            GenerateSecret: false
+    CognitoUserPoolDomain:
+      Type: AWS::Cognito::UserPoolDomain
+      Properties:
+        Domain: notion-email-service-${self:provider.stage} 
+        UserPoolId:
+          Ref: CognitoUserPool
+
+      
+plugins:
+  - serverless-dotenv-plugin
+  

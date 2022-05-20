@@ -5,7 +5,8 @@
   "scripts": {
     "deploy:infra" : "cd infra; sls deploy; cd ../;",
     "deploy:api" : "cd api; sls deploy; cd ../;",
-    "deploy:fe" : "cd fe; sls deploy; cd ../;",
+    "build:fe" : "cd ./fe/client; npm run build; cd ../../;",
+    "deploy:fe" : "npm run build:fe; cd ./fe; sls client deploy; cd ../;",
     "deploy:app" : "npm run deploy:infra; npm run deploy:api; npm run deploy:fe;"
     
   },

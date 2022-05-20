@@ -3,12 +3,16 @@ frameworkVersion: '3'
 provider:
   name: aws
   stage: dev
+  region: us-west-1
+
+
 
 custom:
   client: 
-    bucketName: notion-email-service-fe
-    indexDocument: custom-index.html
-    errorDocument: custom-error.html
+    bucketName: notion-email-service-fe-build
+    distributionFolder: client/dist
+    indexDocument: index.html
+    errorDocument: index.html
 
 
 plugins:
