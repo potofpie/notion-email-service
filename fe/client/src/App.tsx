@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import {AuthContext} from './contexts/authContext'
 import { Routes, Route } from "react-router-dom";
 import {
   AppContainer,
@@ -6,11 +8,16 @@ import { ProductDisplay, Login, NotFound, Header, Demo } from './components'
 import FadeIn from 'react-fade-in';
 
 
+
 export const App = () => {
+  const authContext = useContext(AuthContext)
+
   return (
     <AppContainer>
       <Routes>
         <Route path="login" element={ <FadeIn>
+
+            {console.log(authContext.signUpWithEmail("rec3college@gmail.com", "rec3college@gmail.com", "Testing-123"))}
             <AppContainer>
               <Login/>
             </AppContainer>
