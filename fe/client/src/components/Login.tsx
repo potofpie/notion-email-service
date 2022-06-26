@@ -7,9 +7,15 @@ import {
 import { FcGoogle } from 'react-icons/fc';
 import { AiOutlineApple } from 'react-icons/ai';
 import { icon } from '../assets'
+import { Auth  } from 'aws-amplify';
+import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth/lib/types";
+
 
 
 const SSO_GOOGLE_LINK = import.meta.env.VITE_SSO_GOOGLE_LINK
+
+
+
   export const Login:FC = () => {
     return (
         <>
@@ -18,7 +24,7 @@ const SSO_GOOGLE_LINK = import.meta.env.VITE_SSO_GOOGLE_LINK
             <Description>Simply design and send mass email champains without leaving Notion!</Description>
             {/* <input className="shadow m-5 appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="Email" type="text" placeholder="Notion Account Email"/> */}
             <div className='w-full flex flex-row items-center justify-around'>
-              {console.log( )}
+            <a style={{color: 'black'}}href={`${SSO_GOOGLE_LINK}`} onClick={() => Auth.signOut() }>logout</a>
             <a href={`${SSO_GOOGLE_LINK}`}>
               <div className="flex flex-row justify-center items-center bg-black m-3 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                 <FcGoogle className="mr-3" /> 

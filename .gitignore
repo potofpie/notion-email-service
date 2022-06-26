@@ -40,7 +40,8 @@ node_modules
 
 #Serverless Stuff
 admin.env
-.env*
+**/.env*
+config.*.json
 _meta
 .serverless
 
