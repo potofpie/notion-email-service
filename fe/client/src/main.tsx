@@ -1,22 +1,14 @@
 import React from 'react'
 import { render } from 'react-dom'
-import App from './App'
+import { App } from './App'
 import { BrowserRouter } from "react-router-dom";
-import { Amplify, Auth  } from 'aws-amplify';
-import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth/lib/types";
-
-
-// import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
-
-// import AuthProvider from 'aws-cognito-react-ui';
-
+import { Amplify } from 'aws-amplify';
+import { AuthProvider } from './context';
 import './index.css'
-const container  = document.getElementById('root')
 
 const UserPoolId = import.meta.env.VITE_USER_POOL_ID
 const ClientId = import.meta.env.VITE_USER_POOL_CLIENT_ID
 const Region = import.meta.env.VITE_REGION;
-
 Amplify.configure(
     {  
         userPoolId: UserPoolId,
@@ -36,11 +28,15 @@ Amplify.configure(
             },
         }
     });
-
+const container  = document.getElementById('root')
 render(
     <BrowserRouter>
-        
+        <AuthProvider>
             <App/>
+        </AuthProvider>
     </BrowserRouter>, 
     container
 );
+
+
+

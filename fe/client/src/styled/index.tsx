@@ -1,6 +1,11 @@
 
 import styled from 'styled-components'
 
+export const LoginButton = styled.div`
+  font-weight: 500;
+  font-size: 34px;
+`
+
 export const Title = styled.div`
   font-weight: 500;
   font-size: 34px;
@@ -28,16 +33,39 @@ export const AppContainer = styled.div`
   flex-direction: column;
 `
 
+
 export const SolidButton  = styled.button.attrs(props => ({
-  className: "bg-black m-3 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
+  className: `flex 
+              flex-row 
+              justify-center 
+              items-center 
+              bg-black 
+              m-3 
+              hover:bg-gray-700 
+              text-white 
+              font-bold py-2 
+              px-4 
+              rounded 
+              focus:outline-none 
+              focus:shadow-outline`
 }))``
 
 export const TransparentButton  = styled.a.attrs(props => ({
-  className: "align-baseline m-3 font-bold text-sm text-black hover:text-gray-700" 
+  className: `align-baseline 
+              m-3 font-bold 
+              text-sm 
+              text-black 
+              hover:text-gray-700`
 }))``
 
 export const ProductDisplayContainer  = styled.div.attrs(props => ({
-  className: "flex flex-1 text-center  rounded-md justify-center items-center flex-col w-90"
+  className: `flex 
+              flex-1 
+              text-center 
+              rounded-md 
+              justify-center 
+              items-center 
+              flex-col w-90`
 }))``
 
 
