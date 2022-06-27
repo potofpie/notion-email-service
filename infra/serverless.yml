@@ -9,6 +9,7 @@ provider:
   stage: dev
 
 
+
 resources:
   Resources:
     UsersTable:
@@ -39,8 +40,8 @@ resources:
         AttributeMapping:
           email: email
         ProviderDetails:
-          client_id: ${env:SSO_GOOGLE_CLIENT_ID}
-          client_secret: ${env:SSO_GOOGLE_CLIENT_SECRET}
+          client_id: ${file(./config.common.json):SSO_GOOGLE_CLIENT_ID}
+          client_secret: ${file(./config.common.json):SSO_GOOGLE_CLIENT_SECRET}
           authorize_scopes: email openid
         ProviderType: Google
         UserPoolId: 
@@ -52,16 +53,13 @@ resources:
         Properties:
             ClientName: ${self:provider.stage}-user-pool-client
             AllowedOAuthScopes:
-              - phone
               - email
               - openid
-            CallbackURLs:
-              -  https://example.com/cb
-            LogoutURLs:
-              -  https://example.com/logout
+              - aws.cognito.signin.user.admin
+            CallbackURLs: ${file(./config.${self:provider.stage}.json):CallbackURLs}
+            LogoutURLs: ${file(./config.${self:provider.stage}.json):LogoutURLs}
             AllowedOAuthFlows:
               - code
-              - implicit
             SupportedIdentityProviders: 
               - Google
             UserPoolId:
@@ -75,8 +73,3 @@ resources:
         Domain: notion-email-service-${self:provider.stage} 
         UserPoolId:
           Ref: CognitoUserPool
-
-      
-plugins:
-  - serverless-dotenv-plugin
-  

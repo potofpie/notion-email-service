@@ -10,7 +10,7 @@
     "predeploy": "docker run -v \"$PWD\":/var/task \"public.ecr.aws/sam/build-python3.8\" /bin/sh -c \"pip install -r requirements.txt -t  pythonLayers/general/python; exit\""
   },
   "devDependencies": {
-    "serverless-dotenv-plugin": "^4.0.0",
+    "serverless-dotenv-plugin": "^4.0.1",
     "serverless-finch": "^4.0.0",
     "serverless-python-requirements": "^5.4.0",
     "serverless-wsgi": "^1.7.6"

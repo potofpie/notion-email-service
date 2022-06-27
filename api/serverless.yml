@@ -32,11 +32,6 @@ functions:
 
 custom:
   tableName: users-table
-  # pythonRequirements:
-  #   pythonBin: python3
-  #   dockerImage: amazon/aws-lambda-python:3.8
-  #   dockerizePip: non-linux
-
 
 plugins:
   - serverless-dotenv-plugin
