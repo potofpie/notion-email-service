@@ -28,13 +28,27 @@ functions:
       - !Ref GeneralLambdaLayer
     events:
       - httpApi: '*'
-
+  create-db-user:
+    handler: create_db_user.lambda_handler
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - dynamodb:*
+        Resource: "*"
+    layers:
+      - !Ref GeneralLambdaLayer
+    events:
+      - cognitoUserPool:
+          pool: ${self:provider.stage}-user-pool
+          trigger: PostAuthentication
+          existing: true
 
 custom:
   tableName: users-table
 
 plugins:
   - serverless-dotenv-plugin
+  - serverless-iam-roles-per-function
 
   
 

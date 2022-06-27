@@ -10,9 +10,7 @@ class UserModel(Model):
     A DynamoDB User
     """
     class Meta:
-        host = 'http://localhost:8000'
         table_name = 'users-table-dev'
-        region = 'us-west-1'
     id = UnicodeAttribute(hash_key=True)
     email = UnicodeAttribute()
     first_name = UnicodeAttribute(null=True)

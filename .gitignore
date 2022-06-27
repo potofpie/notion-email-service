@@ -48,6 +48,7 @@ _meta
 #Python Stuff
 venv
 pythonLayers
+**/__pycache__/**
 
 #Vim Stuff...try harder thang...
 tags
