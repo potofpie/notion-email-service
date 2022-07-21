@@ -6,3 +6,4 @@ pycrypto==2.6.1
 apig_wsgi
 boto3
 pynamodb
+aws_lambda_wsgi

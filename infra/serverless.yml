@@ -1,8 +1,8 @@
-service: notion-email-service-infra
+service: controller-lab-infra
 frameworkVersion: '3'
 
 custom:
-  tableName: 'users-table-${self:provider.stage}'
+  userTableName: 'users-table-${self:provider.stage}'
 
 provider:
   name: aws
@@ -24,52 +24,4 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-        TableName: ${self:custom.tableName}
-    CognitoUserPool:
-      Type: AWS::Cognito::UserPool
-      Properties:
-          UserPoolName: ${self:provider.stage}-user-pool
-          UsernameAttributes:
-              - email
-          AutoVerifiedAttributes:
-              - email
-    GoogleCognitoUserPoolIdentityProvider:
-      Type: AWS::Cognito::UserPoolIdentityProvider
-      Properties: 
-        ProviderName: Google
-        AttributeMapping:
-          email: email
-        ProviderDetails:
-          client_id: ${file(./config.common.json):SSO_GOOGLE_CLIENT_ID}
-          client_secret: ${file(./config.common.json):SSO_GOOGLE_CLIENT_SECRET}
-          authorize_scopes: email openid
-        ProviderType: Google
-        UserPoolId: 
-          Ref: CognitoUserPool
-    CognitoUserPoolClient:
-        Type: AWS::Cognito::UserPoolClient
-        DependsOn: 
-          - GoogleCognitoUserPoolIdentityProvider
-        Properties:
-            ClientName: ${self:provider.stage}-user-pool-client
-            AllowedOAuthScopes:
-              - email
-              - openid
-              - aws.cognito.signin.user.admin
-            CallbackURLs: ${file(./config.${self:provider.stage}.json):CallbackURLs}
-            LogoutURLs: ${file(./config.${self:provider.stage}.json):LogoutURLs}
-            AllowedOAuthFlows:
-              - code
-            SupportedIdentityProviders: 
-              - Google
-            UserPoolId:
-                Ref: CognitoUserPool
-            ExplicitAuthFlows:
-                - ADMIN_NO_SRP_AUTH
-            GenerateSecret: false
-    CognitoUserPoolDomain:
-      Type: AWS::Cognito::UserPoolDomain
-      Properties:
-        Domain: notion-email-service-${self:provider.stage} 
-        UserPoolId:
-          Ref: CognitoUserPool
+        TableName: ${self:custom.userTableName}

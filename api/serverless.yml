@@ -1,4 +1,4 @@
-service: notion-email-service-api
+service: controller-lab-api
 frameworkVersion: '3'
 provider:
   name: aws
@@ -23,13 +23,7 @@ layers:
 
 functions:
   api:
-    handler: lambda_handler.lambda_handler
-    layers:
-      - !Ref GeneralLambdaLayer
-    events:
-      - httpApi: '*'
-  create-db-user:
-    handler: create_db_user.lambda_handler
+    handler: app.lambda_handler
     iamRoleStatements:
       - Effect: "Allow"
         Action:
@@ -38,10 +32,7 @@ functions:
     layers:
       - !Ref GeneralLambdaLayer
     events:
-      - cognitoUserPool:
-          pool: ${self:provider.stage}-user-pool
-          trigger: PostAuthentication
-          existing: true
+      - httpApi: '*'
 
 custom:
   tableName: users-table
